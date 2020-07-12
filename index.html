@@ -11,23 +11,24 @@
     <link rel="stylesheet" href="https://cdn.sspai.com/MWeb.css">
     <!-- <link rel="stylesheet" href="https://theme.typora.io/"> -->
 </head>
-<body>1
+<body>
+    <h3>my clode</h3>
     <div id="content" class="markdown-body"></div>
 </body>
 <script src="jquery-3.5.1.js"></script>
 <script src="marked.min.js"></script>
 <script>
     $(function () {
-        // $.ajax({
-        //     type: "get",
-        //     url: "/readme.md",
-        //     dataType: "html",
-        //     success: function (res) {
-        //         document.getElementById('content').innerHTML = marked(res);
-        //         // $("#content").append(marked(res));
-        //         console.log(res)
-        //     }
-        // })
+        $.ajax({
+            type: "get",
+            url: "/readme.md",
+            dataType: "html",
+            success: function (res) {
+                document.getElementById('content').innerHTML = marked(res);
+                // $("#content").append(marked(res));
+                console.log(res)
+            }
+        })
     })
 
 
