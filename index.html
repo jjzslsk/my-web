@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>云笔记</title>
+    <!-- <link href="github-markdown.css" rel="stylesheet"> -->
+    <!-- <link href="vue.css" rel="stylesheet"> -->
+    <!-- <link href="vue-dark.css" rel="stylesheet"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.sspai.com/sspai.css"> -->
+    <link rel="stylesheet" href="https://cdn.sspai.com/MWeb.css">
+    <!-- <link rel="stylesheet" href="https://theme.typora.io/"> -->
+</head>
+<body>
+    <div id="content" class="markdown-body"></div>
+</body>
+<script src="jquery-3.5.1.js"></script>
+<script src="marked.min.js"></script>
+<script>
+    $(function () {
+        // $.ajax({
+        //     type: "get",
+        //     url: "/readme.md",
+        //     dataType: "html",
+        //     success: function (res) {
+        //         document.getElementById('content').innerHTML = marked(res);
+        //         // $("#content").append(marked(res));
+        //         console.log(res)
+        //     }
+        // })
+    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+ * 封装fetch
+ * 更快,更简单的请求数据
+ *
+ * @version 1.0.0
+ * @author  米斯特吴
+ * @license MIT
+ *
+ **/
+
+ class EasyHttp{
+   // get 
+   get(url){
+     return new Promise((resolve,reject) => {
+        fetch(url)
+          .then(res => res.json())
+          .then(data => resolve(data))
+          .catch(err => reject(err))
+     })
+   }
+
+   // post
+   post(url,data){
+    return new Promise((resolve,reject) => {
+       fetch(url,{
+         method:"POST",
+         headers:{
+           'Content-type':'application/json'
+         },
+         body:JSON.stringify(data)
+       })
+         .then(res => res.json())
+         .then(data => resolve(data))
+         .catch(err => reject(err))
+    })
+  }
+
+  // put
+  put(url,data){
+    return new Promise((resolve,reject) => {
+       fetch(url,{
+         method:"PUT",
+         headers:{
+           'Content-type':'application/json'
+         },
+         body:JSON.stringify(data)
+       })
+         .then(res => res.json())
+         .then(data => resolve(data))
+         .catch(err => reject(err))
+    })
+  }
+
+  // delete
+  delete(url){
+    return new Promise((resolve,reject) => {
+       fetch(url,{
+         method:"DELETE",
+         headers:{
+           'Content-type':'application/json'
+         }
+       })
+         .then(res => res.json())
+         .then(data => resolve('数据删除成功!'))
+         .catch(err => reject(err))
+    })
+  }
+ }
+
+ // 请求数据
+ async function getUsers(){
+    // const response = await fetch("http://jsonplaceholder.typicode.com/users");
+  const response = await fetch("/readme.md",
+        {
+            method: "GET",
+            credentials: 'include' // 强制加入凭据头
+        });
+  const data = await response.blob();
+  return data;
+}
+
+getUsers().then(res => 
+
+// document.getElementById('content').innerHTML = "# Marked in browser\n\nRenderedd by **marked**."
+ console.log(res)
+).catch(err=>{
+    console.log(err)
+})
+
+
+</script>
+</html>
